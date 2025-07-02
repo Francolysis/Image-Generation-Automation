@@ -61,6 +61,7 @@ if uploaded_file and openai_key:
     try:
         openai.api_key = openai_key
         df = pd.read_excel(uploaded_file)
+        df.columns = df.columns.str.strip().str.capitalize()
         df = df.dropna(subset=["Prompt"])
         st.success(f"Loaded {len(df)} prompts.")
         st.dataframe(df)
